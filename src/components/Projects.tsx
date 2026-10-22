@@ -53,10 +53,12 @@ export default function Projects() {
   return (
     <section
       id="proyectos"
-      className="relative py-48 lg:py-64"
+      className="relative"
       style={{
-        paddingLeft: "clamp(2.5rem, 7vw, 6rem)",
-        paddingRight: "clamp(2.5rem, 7vw, 6rem)",
+        paddingTop: "clamp(5rem, 10vh, 8rem)",
+        paddingBottom: "clamp(4rem, 8vh, 6rem)",
+        paddingLeft: "clamp(3rem, 8vw, 8rem)",
+        paddingRight: "clamp(3rem, 8vw, 8rem)",
       }}
     >
       {/* Background accent */}
@@ -66,26 +68,26 @@ export default function Projects() {
         {/* Section header */}
         <div
           ref={titleRef}
-          className={`reveal ${titleVisible ? "visible" : ""} mb-24 lg:mb-32 flex flex-col md:flex-row md:items-end md:justify-between gap-8`}
+          className={`reveal ${titleVisible ? "visible" : ""} mb-16 md:mb-20 flex flex-col md:flex-row md:items-end md:justify-between gap-8`}
         >
           <div>
-            <p className="text-xs md:text-sm tracking-[0.3em] uppercase text-white/40 font-mono mb-5">
+            <p className="text-xs md:text-sm tracking-[0.3em] uppercase text-white/40 font-mono mb-4">
               Portafolio
             </p>
-            <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight">
+            <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.05]">
               <span className="text-white">Proyectos</span>
               <br />
               <span className="text-white/40">destacados</span>
             </h2>
           </div>
-          <p className="max-w-md text-base text-white/50 leading-relaxed">
+          <p className="max-w-md text-base md:text-lg text-white/50 leading-relaxed">
             Una selección de nuestros trabajos más recientes que demuestran
             nuestra capacidad de crear soluciones impactantes.
           </p>
         </div>
 
         {/* Projects list */}
-        <div className="space-y-8 lg:space-y-12">
+        <div className="flex flex-col gap-5 md:gap-7">
           {projects.map((project, index) => (
             <ProjectCard
               key={project.id}
@@ -129,7 +131,7 @@ function ProjectCard({
       <div
         onMouseEnter={onHover}
         onMouseLeave={onLeave}
-        className={`group relative p-8 md:p-12 lg:p-14 rounded-3xl border transition-all duration-500 cursor-pointer ${
+        className={`group relative p-8 md:p-10 lg:p-12 rounded-2xl border transition-all duration-500 cursor-pointer ${
           isHovered
             ? "bg-white/[0.05] border-white/20 scale-[1.01] shadow-2xl"
             : anyHovered
@@ -137,7 +139,7 @@ function ProjectCard({
               : "bg-white/[0.02] border-white/10 hover:border-white/20"
         }`}
       >
-        <div className="flex flex-col md:flex-row md:items-center gap-6 md:gap-12">
+        <div className="flex flex-col md:flex-row md:items-center gap-8 md:gap-14">
           {/* Number */}
           <span className="text-6xl md:text-8xl font-bold text-white/[0.08] group-hover:text-white/20 transition-colors duration-500 font-mono shrink-0">
             {String(index + 1).padStart(2, "0")}

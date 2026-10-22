@@ -3,16 +3,53 @@
 import { useEffect, useRef } from "react";
 
 export default function Hero() {
+  const sectionRef = useRef<HTMLElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const hasLeftRef = useRef(false);
 
   useEffect(() => {
-    if (videoRef.current) {
-      videoRef.current.playbackRate = 0.8;
-    }
+    const video = videoRef.current;
+    const section = sectionRef.current;
+    if (!video || !section) return;
+
+    video.playbackRate = 0.8;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          // Si el usuario había salido de los límites de la animación y volvió a ella
+          if (hasLeftRef.current) {
+            hasLeftRef.current = false;
+            video.currentTime = 0;
+            video.play().catch(() => {});
+          }
+        } else {
+          // El usuario se salió de los límites de la sección de animación
+          hasLeftRef.current = true;
+          video.pause();
+        }
+      },
+      {
+        threshold: 0.1,
+      }
+    );
+
+    observer.observe(section);
+
+    return () => {
+      observer.disconnect();
+    };
   }, []);
+
+  const handleEnded = () => {
+    if (videoRef.current) {
+      videoRef.current.pause();
+    }
+  };
 
   return (
     <section
+      ref={sectionRef}
       id="inicio"
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
     >
@@ -22,8 +59,8 @@ export default function Hero() {
           ref={videoRef}
           autoPlay
           muted
-          loop
           playsInline
+          onEnded={handleEnded}
           className="absolute inset-0 w-full h-full object-cover"
         >
           <source src="/animation.mp4" type="video/mp4" />

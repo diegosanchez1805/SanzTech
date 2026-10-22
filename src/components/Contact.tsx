@@ -26,42 +26,44 @@ export default function Contact() {
   return (
     <section
       id="contacto"
-      className="relative py-48 lg:py-64"
+      className="relative"
       style={{
-        paddingLeft: "clamp(2.5rem, 7vw, 6rem)",
-        paddingRight: "clamp(2.5rem, 7vw, 6rem)",
+        paddingTop: "clamp(4rem, 8vh, 6rem)",
+        paddingBottom: "clamp(6rem, 12vh, 10rem)",
+        paddingLeft: "clamp(3rem, 8vw, 8rem)",
+        paddingRight: "clamp(3rem, 8vw, 8rem)",
       }}
     >
       {/* Background accent */}
       <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-white/[0.01] rounded-full blur-[150px]" />
 
       <div className="max-w-7xl mx-auto">
-        <div className="grid lg:grid-cols-2 gap-16 lg:gap-24">
+        <div className="grid lg:grid-cols-2 gap-20 lg:gap-28 xl:gap-36 items-start">
           {/* Left side — Info */}
           <div
             ref={titleRef}
             className={`reveal ${titleVisible ? "visible" : ""}`}
           >
-            <p className="text-xs tracking-[0.3em] uppercase text-white/30 font-mono mb-4">
+            <p className="text-xs md:text-sm tracking-[0.3em] uppercase text-white/40 font-mono mb-6">
               Contacto
             </p>
-            <h2 className="text-4xl md:text-6xl font-bold tracking-tight mb-8">
+            <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-8 leading-[1.05]">
               <span className="text-white">Hablemos de</span>
               <br />
               <span className="text-white/40">tu proyecto</span>
             </h2>
-            <p className="text-base text-white/40 leading-relaxed mb-12 max-w-md">
+            <p className="text-base md:text-lg text-white/50 leading-relaxed mb-14 max-w-lg">
               ¿Tienes una idea en mente? Cuéntanos sobre tu proyecto y
               encontraremos la mejor solución tecnológica para hacerlo realidad.
             </p>
 
-            {/* Contact info */}
-            <div className="space-y-6">
+            {/* Contact info cards */}
+            <div className="flex flex-col gap-5 max-w-md">
               <a
                 href="mailto:contacto@sanztech.com"
-                className="group flex items-center gap-5 p-4 rounded-2xl bg-white/[0.02] border border-white/5 hover:bg-white/[0.05] hover:border-white/15 transition-all duration-300"
+                className="group flex items-center gap-5 p-5 rounded-2xl bg-white/[0.02] border border-white/5 hover:bg-white/[0.06] hover:border-white/15 transition-all duration-300"
               >
-                <div className="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-white/10 group-hover:scale-105 transition-all duration-300">
+                <div className="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-white/10 group-hover:scale-105 transition-all duration-300 shrink-0">
                   <svg
                     className="w-6 h-6 text-white/50 group-hover:text-white transition-colors"
                     fill="none"
@@ -77,15 +79,15 @@ export default function Contact() {
                   </svg>
                 </div>
                 <div>
-                  <p className="text-xs md:text-sm text-white/40 mb-1 font-mono uppercase tracking-wider">Email</p>
+                  <p className="text-xs text-white/40 mb-1 font-mono uppercase tracking-wider">Email</p>
                   <p className="text-base md:text-lg text-white/80 group-hover:text-white transition-colors font-medium">
                     contacto@sanztech.com
                   </p>
                 </div>
               </a>
 
-              <div className="flex items-center gap-5 p-4 rounded-2xl bg-white/[0.02] border border-white/5">
-                <div className="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center">
+              <div className="flex items-center gap-5 p-5 rounded-2xl bg-white/[0.02] border border-white/5">
+                <div className="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center shrink-0">
                   <svg
                     className="w-6 h-6 text-white/50"
                     fill="none"
@@ -107,13 +109,13 @@ export default function Contact() {
                   </svg>
                 </div>
                 <div>
-                  <p className="text-xs md:text-sm text-white/40 mb-1 font-mono uppercase tracking-wider">Ubicación</p>
+                  <p className="text-xs text-white/40 mb-1 font-mono uppercase tracking-wider">Ubicación</p>
                   <p className="text-base md:text-lg text-white/80 font-medium">México</p>
                 </div>
               </div>
 
               {/* Social links */}
-              <div className="pt-8 flex gap-4">
+              <div className="pt-6 flex gap-4">
                 {[
                   {
                     label: "GitHub",
@@ -160,19 +162,15 @@ export default function Contact() {
           {/* Right side — Form */}
           <div
             ref={formRef}
-            className={`reveal ${formVisible ? "visible" : ""} p-8 md:p-12 rounded-3xl bg-white/[0.02] border border-white/10 shadow-2xl`}
+            className={`reveal ${formVisible ? "visible" : ""}`}
             style={{ transitionDelay: "200ms" }}
           >
-            <form onSubmit={handleSubmit} className="space-y-8">
+            <form onSubmit={handleSubmit} className="flex flex-col gap-8 md:gap-10">
               {/* Name */}
-              <div className="relative">
+              <div className="flex flex-col gap-3">
                 <label
                   htmlFor="name"
-                  className={`absolute left-0 transition-all duration-300 text-white/40 ${
-                    focused === "name" || formState.name
-                      ? "text-xs -top-5 text-white/60"
-                      : "text-base top-4"
-                  }`}
+                  className="text-sm md:text-base font-medium text-white/70"
                 >
                   Nombre completo
                 </label>
@@ -183,24 +181,19 @@ export default function Contact() {
                   onChange={(e) =>
                     setFormState({ ...formState, name: e.target.value })
                   }
-                  onFocus={() => setFocused("name")}
-                  onBlur={() => setFocused(null)}
+                  placeholder="Tu nombre o empresa"
                   required
-                  className="w-full bg-transparent border-b border-white/15 focus:border-white py-4 text-white text-base md:text-lg outline-none transition-colors duration-300"
+                  className="w-full bg-white/[0.03] border border-white/10 focus:border-white/40 rounded-2xl px-6 py-4.5 text-white text-base md:text-lg outline-none transition-all duration-300 placeholder:text-white/25 focus:bg-white/[0.06]"
                 />
               </div>
 
               {/* Email */}
-              <div className="relative">
+              <div className="flex flex-col gap-3">
                 <label
                   htmlFor="email"
-                  className={`absolute left-0 transition-all duration-300 text-white/40 ${
-                    focused === "email" || formState.email
-                      ? "text-xs -top-5 text-white/60"
-                      : "text-base top-4"
-                  }`}
+                  className="text-sm md:text-base font-medium text-white/70"
                 >
-                  Email
+                  Correo electrónico
                 </label>
                 <input
                   type="email"
@@ -209,22 +202,17 @@ export default function Contact() {
                   onChange={(e) =>
                     setFormState({ ...formState, email: e.target.value })
                   }
-                  onFocus={() => setFocused("email")}
-                  onBlur={() => setFocused(null)}
+                  placeholder="ejemplo@correo.com"
                   required
-                  className="w-full bg-transparent border-b border-white/15 focus:border-white py-4 text-white text-base md:text-lg outline-none transition-colors duration-300"
+                  className="w-full bg-white/[0.03] border border-white/10 focus:border-white/40 rounded-2xl px-6 py-4.5 text-white text-base md:text-lg outline-none transition-all duration-300 placeholder:text-white/25 focus:bg-white/[0.06]"
                 />
               </div>
 
               {/* Message */}
-              <div className="relative">
+              <div className="flex flex-col gap-3">
                 <label
                   htmlFor="message"
-                  className={`absolute left-0 transition-all duration-300 text-white/40 ${
-                    focused === "message" || formState.message
-                      ? "text-xs -top-5 text-white/60"
-                      : "text-base top-4"
-                  }`}
+                  className="text-sm md:text-base font-medium text-white/70"
                 >
                   Cuéntanos sobre tu proyecto
                 </label>
@@ -234,11 +222,10 @@ export default function Contact() {
                   onChange={(e) =>
                     setFormState({ ...formState, message: e.target.value })
                   }
-                  onFocus={() => setFocused("message")}
-                  onBlur={() => setFocused(null)}
+                  placeholder="Describe brevemente qué necesitas desarrollar..."
                   required
-                  rows={4}
-                  className="w-full bg-transparent border-b border-white/15 focus:border-white py-4 text-white text-base md:text-lg outline-none transition-colors duration-300 resize-none"
+                  rows={5}
+                  className="w-full bg-white/[0.03] border border-white/10 focus:border-white/40 rounded-2xl px-6 py-4.5 text-white text-base md:text-lg outline-none transition-all duration-300 placeholder:text-white/25 focus:bg-white/[0.06] resize-none"
                 />
               </div>
 
