@@ -93,20 +93,27 @@ export default function Services() {
   const { ref: titleRef, isVisible: titleVisible } = useReveal();
 
   return (
-    <section id="servicios" className="relative py-32 px-6 md:px-12">
+    <section
+      id="servicios"
+      className="relative py-48 lg:py-64"
+      style={{
+        paddingLeft: "clamp(2.5rem, 7vw, 6rem)",
+        paddingRight: "clamp(2.5rem, 7vw, 6rem)",
+      }}
+    >
       {/* Subtle top divider */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-20 bg-gradient-to-b from-transparent to-white/10" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-28 bg-gradient-to-b from-transparent to-white/10" />
 
       <div className="max-w-7xl mx-auto">
         {/* Section header */}
         <div
           ref={titleRef}
-          className={`reveal ${titleVisible ? "visible" : ""} mb-20`}
+          className={`reveal ${titleVisible ? "visible" : ""} mb-24 lg:mb-32`}
         >
-          <p className="text-xs tracking-[0.3em] uppercase text-white/30 font-mono mb-4">
+          <p className="text-xs md:text-sm tracking-[0.3em] uppercase text-white/40 font-mono mb-5">
             Nuestros servicios
           </p>
-          <h2 className="text-4xl md:text-6xl font-bold tracking-tight">
+          <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight">
             <span className="text-white">Lo que</span>
             <br />
             <span className="text-white/40">hacemos mejor</span>
@@ -114,7 +121,7 @@ export default function Services() {
         </div>
 
         {/* Services grid */}
-        <div className="grid md:grid-cols-2 gap-6">
+        <div className="grid md:grid-cols-2 gap-10 lg:gap-14">
           {services.map((service, index) => (
             <ServiceCard key={index} service={service} index={index} />
           ))}
@@ -139,26 +146,26 @@ function ServiceCard({
       className={`reveal ${isVisible ? "visible" : ""} group relative`}
       style={{ transitionDelay: `${index * 100}ms` }}
     >
-      <div className="relative p-8 md:p-10 rounded-2xl border border-white/5 bg-white/[0.02] hover:bg-white/[0.04] hover:border-white/10 transition-all duration-500">
+      <div className="relative p-10 md:p-12 lg:p-14 rounded-3xl border border-white/10 bg-white/[0.03] hover:bg-white/[0.06] hover:border-white/20 transition-all duration-500 shadow-lg hover:shadow-2xl">
         {/* Icon */}
-        <div className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-white/60 group-hover:text-white group-hover:bg-white/10 transition-all duration-300 mb-6">
+        <div className="w-16 h-16 rounded-2xl bg-white/5 border border-white/15 flex items-center justify-center text-white/70 group-hover:text-white group-hover:bg-white/10 group-hover:scale-110 transition-all duration-300 mb-8">
           {service.icon}
         </div>
 
         {/* Content */}
-        <h3 className="text-xl font-semibold text-white mb-3 tracking-tight">
+        <h3 className="text-2xl md:text-3xl font-bold text-white mb-4 tracking-tight">
           {service.title}
         </h3>
-        <p className="text-sm text-white/40 leading-relaxed mb-6">
+        <p className="text-base md:text-lg text-white/50 leading-relaxed mb-8">
           {service.description}
         </p>
 
         {/* Tags */}
-        <div className="flex flex-wrap gap-2">
+        <div className="flex flex-wrap gap-3">
           {service.tags.map((tag) => (
             <span
               key={tag}
-              className="px-3 py-1 text-xs font-mono text-white/30 bg-white/5 rounded-full border border-white/5"
+              className="px-4 py-1.5 text-xs md:text-sm font-mono text-white/50 bg-white/5 rounded-full border border-white/10 group-hover:border-white/20 group-hover:text-white/75 transition-colors"
             >
               {tag}
             </span>
@@ -166,9 +173,9 @@ function ServiceCard({
         </div>
 
         {/* Hover arrow */}
-        <div className="absolute top-8 right-8 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-x-2 group-hover:translate-x-0">
+        <div className="absolute top-10 right-10 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-x-3 group-hover:translate-x-0">
           <svg
-            className="w-5 h-5 text-white/40"
+            className="w-6 h-6 text-white/60"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -176,7 +183,7 @@ function ServiceCard({
             <path
               strokeLinecap="round"
               strokeLinejoin="round"
-              strokeWidth={1.5}
+              strokeWidth={2}
               d="M7 17L17 7M17 7H7M17 7v10"
             />
           </svg>

@@ -37,39 +37,39 @@ export default function Hero() {
       {/* Content */}
       <div className="relative z-10 max-w-5xl mx-auto px-6 text-center">
         {/* Badge */}
-        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 bg-white/5 backdrop-blur-sm mb-8 animate-fade-in">
-          <span className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse" />
-          <span className="text-xs text-white/70 tracking-wider uppercase font-mono">
+        <div className="inline-flex items-center gap-3 px-6 py-3 rounded-full border border-white/15 bg-white/5 backdrop-blur-md mb-10 animate-fade-in shadow-[0_0_20px_rgba(255,255,255,0.05)]">
+          <span className="w-2.5 h-2.5 bg-emerald-400 rounded-full animate-pulse" />
+          <span className="text-sm md:text-base text-white/80 tracking-wider uppercase font-mono">
             Disponible para nuevos proyectos
           </span>
         </div>
 
         {/* Heading */}
-        <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight leading-[0.95] mb-8 opacity-0 animate-fade-in-up delay-200">
+        <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight leading-[0.95] mb-10 opacity-0 animate-fade-in-up delay-200">
           <span className="block text-white">Creamos</span>
-          <span className="block mt-2 bg-gradient-to-r from-white via-white/80 to-white/50 bg-clip-text text-transparent">
+          <span className="block mt-3 bg-gradient-to-r from-white via-white/90 to-white/60 bg-clip-text text-transparent">
             Software
           </span>
-          <span className="block mt-2 text-white/40 text-3xl md:text-5xl lg:text-6xl font-light">
+          <span className="block mt-3 text-white/45 text-3xl md:text-5xl lg:text-6xl font-light">
             que transforma ideas
           </span>
         </h1>
 
         {/* Subtitle */}
-        <p className="max-w-2xl mx-auto text-base md:text-lg text-white/50 leading-relaxed mb-12 opacity-0 animate-fade-in-up delay-400">
+        <p className="max-w-2xl mx-auto text-lg md:text-xl text-white/60 leading-relaxed mb-14 opacity-0 animate-fade-in-up delay-400">
           Soluciones digitales a la medida. Diseñamos y desarrollamos software
           que impulsa tu negocio hacia el futuro.
         </p>
 
         {/* CTA Buttons */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 opacity-0 animate-fade-in-up delay-600">
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-5 opacity-0 animate-fade-in-up delay-600">
           <a
             href="#proyectos"
-            className="group px-8 py-4 bg-white text-black font-medium rounded-full hover:bg-white/90 transition-all duration-300 hover:scale-105 flex items-center gap-2"
+            className="group w-full sm:w-auto px-10 py-5 bg-white text-black font-semibold text-lg rounded-full hover:bg-white/90 transition-all duration-300 hover:scale-105 active:scale-95 flex items-center justify-center gap-3 shadow-[0_0_30px_rgba(255,255,255,0.25)] hover:shadow-[0_0_40px_rgba(255,255,255,0.4)]"
           >
             Ver Proyectos
             <svg
-              className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"
+              className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1.5"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -77,14 +77,14 @@ export default function Hero() {
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                strokeWidth={2}
+                strokeWidth={2.5}
                 d="M17 8l4 4m0 0l-4 4m4-4H3"
               />
             </svg>
           </a>
           <a
             href="#contacto"
-            className="px-8 py-4 border border-white/20 text-white/80 font-medium rounded-full hover:bg-white/5 hover:border-white/40 transition-all duration-300"
+            className="w-full sm:w-auto px-10 py-5 border-2 border-white/20 text-white font-semibold text-lg rounded-full hover:bg-white/10 hover:border-white/50 transition-all duration-300 hover:scale-105 active:scale-95 backdrop-blur-sm"
           >
             Contáctanos
           </a>

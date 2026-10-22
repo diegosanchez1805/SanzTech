@@ -8,6 +8,7 @@ const navLinks = [
   { href: "#servicios", label: "Servicios" },
   { href: "#proyectos", label: "Proyectos" },
   { href: "#contacto", label: "Contacto" },
+  { href: "#contacto", label: "Hablemos" },
 ];
 
 export default function Navbar() {
@@ -24,57 +25,58 @@ export default function Navbar() {
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled
-          ? "bg-black/80 backdrop-blur-xl border-b border-white/5"
-          : "bg-transparent"
+          ? "bg-black/90 backdrop-blur-md border-b border-white/10 py-3"
+          : "bg-transparent py-5"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-6 md:px-12">
-        <div className="flex items-center justify-between h-20">
+      <div
+        className="max-w-7xl mx-auto"
+        style={{
+          paddingLeft: "clamp(2.5rem, 7vw, 6rem)",
+          paddingRight: "clamp(2.5rem, 7vw, 6rem)",
+        }}
+      >
+        <div className="flex items-center justify-between h-20 md:h-24">
           {/* Logo */}
-          <a href="#inicio" className="flex items-center gap-3 group">
+          <a href="#inicio" className="flex items-center group py-2">
             <Image
               src="/logo.png"
               alt="SanzTech"
-              width={160}
-              height={40}
-              className="h-8 w-auto brightness-100 group-hover:brightness-125 transition-all duration-300"
+              width={260}
+              height={75}
+              className="h-10 md:h-12 lg:h-14 w-auto object-contain transition-opacity duration-300 group-hover:opacity-85"
+              priority
             />
           </a>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-1">
-            {navLinks.map((link) => (
+          <div className="hidden md:flex items-center gap-8 lg:gap-12">
+            {navLinks.map((link, idx) => (
               <a
-                key={link.href}
+                key={`${link.href}-${idx}`}
                 href={link.href}
-                className="relative px-5 py-2 text-sm text-white/60 hover:text-white transition-colors duration-300 group"
+                className="relative py-2 text-base lg:text-lg font-medium text-white/70 hover:text-white transition-colors duration-300 tracking-wide group"
               >
                 {link.label}
-                <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-px bg-white group-hover:w-3/4 transition-all duration-300" />
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-white group-hover:w-full transition-all duration-300 rounded-full" />
               </a>
             ))}
-            <a
-              href="#contacto"
-              className="ml-4 px-6 py-2.5 text-sm font-medium bg-white text-black rounded-full hover:bg-white/90 transition-all duration-300 hover:scale-105"
-            >
-              Hablemos
-            </a>
           </div>
 
           {/* Mobile Menu Button */}
           <button
             onClick={() => setMenuOpen(!menuOpen)}
-            className="md:hidden relative w-8 h-8 flex flex-col items-center justify-center gap-1.5"
+            className="md:hidden relative w-10 h-10 flex flex-col items-center justify-center gap-2 p-2 rounded-xl bg-white/5 border border-white/10"
             aria-label="Menu"
           >
             <span
-              className={`block w-6 h-px bg-white transition-all duration-300 ${
-                menuOpen ? "rotate-45 translate-y-[3.5px]" : ""
+              className={`block w-6 h-0.5 bg-white transition-all duration-300 ${
+                menuOpen ? "rotate-45 translate-y-[5px]" : ""
               }`}
             />
             <span
-              className={`block w-6 h-px bg-white transition-all duration-300 ${
-                menuOpen ? "-rotate-45 -translate-y-[3.5px]" : ""
+              className={`block w-6 h-0.5 bg-white transition-all duration-300 ${
+                menuOpen ? "-rotate-45 -translate-y-[5px]" : ""
               }`}
             />
           </button>
@@ -89,24 +91,23 @@ export default function Navbar() {
             : "opacity-0 -translate-y-4 pointer-events-none"
         }`}
       >
-        <div className="px-6 py-8 flex flex-col gap-4">
-          {navLinks.map((link) => (
+        <div
+          className="py-8 flex flex-col gap-4"
+          style={{
+            paddingLeft: "clamp(2rem, 6vw, 4rem)",
+            paddingRight: "clamp(2rem, 6vw, 4rem)",
+          }}
+        >
+          {navLinks.map((link, idx) => (
             <a
-              key={link.href}
+              key={`m-${link.href}-${idx}`}
               href={link.href}
               onClick={() => setMenuOpen(false)}
-              className="text-lg text-white/60 hover:text-white transition-colors py-2"
+              className="text-lg text-white/70 hover:text-white transition-colors py-2"
             >
               {link.label}
             </a>
           ))}
-          <a
-            href="#contacto"
-            onClick={() => setMenuOpen(false)}
-            className="mt-4 text-center px-6 py-3 text-sm font-medium bg-white text-black rounded-full"
-          >
-            Hablemos
-          </a>
         </div>
       </div>
     </nav>
