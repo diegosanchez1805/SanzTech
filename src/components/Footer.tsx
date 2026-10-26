@@ -13,15 +13,16 @@ export default function Footer() {
   return (
     <footer className="relative border-t border-white/10 bg-black/40">
       <div
-        className="max-w-7xl mx-auto py-24"
+        className="max-w-7xl mx-auto py-16 md:py-20"
         style={{
           paddingLeft: "clamp(2.5rem, 7vw, 6rem)",
           paddingRight: "clamp(2.5rem, 7vw, 6rem)",
         }}
       >
-        <div className="flex flex-col md:flex-row items-center justify-between gap-10">
+        {/* Main Footer Row: Logo a la izquierda, Enlaces a la derecha */}
+        <div className="flex flex-col md:flex-row items-center justify-between gap-8">
           {/* Logo */}
-          <div className="flex items-center">
+          <a href="#inicio" className="flex items-center">
             <Image
               src="/logo.png"
               alt="SanzTech"
@@ -29,10 +30,10 @@ export default function Footer() {
               height={60}
               className="h-10 md:h-12 w-auto opacity-75 hover:opacity-100 transition-opacity"
             />
-          </div>
+          </a>
 
-          {/* Links */}
-          <div className="flex flex-wrap items-center justify-center gap-8 md:gap-10">
+          {/* Links a la derecha */}
+          <div className="flex flex-wrap items-center justify-center md:justify-end gap-8 md:gap-10">
             {["Inicio", "Servicios", "Proyectos", "Contacto"].map((link) => (
               <a
                 key={link}
@@ -43,11 +44,11 @@ export default function Footer() {
               </a>
             ))}
           </div>
+        </div>
 
-          {/* Copyright */}
-          <p className="text-sm text-white/30">
-            © {currentYear} SanzTech. Todos los derechos reservados.
-          </p>
+        {/* Fila inferior: Separador y Copyright */}
+        <div className="mt-12 pt-8 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-white/30">
+          <p>© {currentYear} SanzTech. Todos los derechos reservados.</p>
         </div>
       </div>
     </footer>
