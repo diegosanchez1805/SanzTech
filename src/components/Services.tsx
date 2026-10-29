@@ -95,25 +95,22 @@ export default function Services() {
   return (
     <section
       id="servicios"
-      className="relative py-48 lg:py-64"
-      style={{
-        paddingLeft: "clamp(2.5rem, 7vw, 6rem)",
-        paddingRight: "clamp(2.5rem, 7vw, 6rem)",
-      }}
+      className="relative section-y"
     >
       {/* Subtle top divider */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-28 bg-gradient-to-b from-transparent to-white/10" />
 
-      <div className="max-w-7xl mx-auto">
+      <div className="container-x">
         {/* Section header */}
         <div
           ref={titleRef}
-          className={`reveal ${titleVisible ? "visible" : ""} mb-24 lg:mb-32`}
+          className={`reveal ${titleVisible ? "visible" : ""} mb-16 md:mb-20 lg:mb-24`}
         >
-          <p className="text-xs md:text-sm tracking-[0.3em] uppercase text-white/40 font-mono mb-5">
+          <p className="flex items-center gap-3 text-xs md:text-sm tracking-[0.3em] uppercase text-white/40 font-mono mb-5">
+            <span className="h-px w-8 bg-white/30" aria-hidden="true" />
             Nuestros servicios
           </p>
-          <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight">
+          <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.05]">
             <span className="text-white">Lo que</span>
             <br />
             <span className="text-white/40">hacemos mejor</span>
@@ -121,7 +118,7 @@ export default function Services() {
         </div>
 
         {/* Services grid */}
-        <div className="grid md:grid-cols-2 gap-10 lg:gap-14">
+        <div className="grid md:grid-cols-2 gap-6 md:gap-8 lg:gap-10">
           {services.map((service, index) => (
             <ServiceCard key={index} service={service} index={index} />
           ))}
@@ -143,25 +140,30 @@ function ServiceCard({
   return (
     <div
       ref={ref}
-      className={`reveal ${isVisible ? "visible" : ""} group relative`}
+      className={`reveal ${isVisible ? "visible" : ""} group relative h-full`}
       style={{ transitionDelay: `${index * 100}ms` }}
     >
-      <div className="relative p-10 md:p-12 lg:p-14 rounded-3xl border border-white/10 bg-white/[0.03] hover:bg-white/[0.06] hover:border-white/20 transition-all duration-500 shadow-lg hover:shadow-2xl">
-        {/* Icon */}
-        <div className="w-16 h-16 rounded-2xl bg-white/5 border border-white/15 flex items-center justify-center text-white/70 group-hover:text-white group-hover:bg-white/10 group-hover:scale-110 transition-all duration-300 mb-8">
-          {service.icon}
+      <div className="card-sheen relative h-full flex flex-col justify-between overflow-hidden p-8 sm:p-10 md:p-12 rounded-3xl border border-white/10 bg-white/[0.03] hover:bg-white/[0.05] hover:border-white/20 hover:-translate-y-1 transition-all duration-500 shadow-lg hover:shadow-[0_30px_60px_-20px_rgba(0,0,0,0.9)]">
+        {/* Soft glow on hover */}
+        <div className="absolute -top-24 -right-24 w-64 h-64 rounded-full bg-white/[0.04] blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
+
+        <div>
+          {/* Icon */}
+          <div className="w-14 h-14 md:w-16 md:h-16 rounded-2xl bg-white/5 border border-white/15 flex items-center justify-center text-white/70 group-hover:text-white group-hover:bg-white/10 group-hover:scale-110 transition-all duration-300 mb-8">
+            {service.icon}
+          </div>
+
+          {/* Content */}
+          <h3 className="text-2xl sm:text-3xl font-bold text-white mb-4 tracking-tight leading-snug">
+            {service.title}
+          </h3>
+          <p className="text-base md:text-lg text-white/50 leading-relaxed text-pretty mb-8 max-w-md">
+            {service.description}
+          </p>
         </div>
 
-        {/* Content */}
-        <h3 className="text-2xl md:text-3xl font-bold text-white mb-4 tracking-tight">
-          {service.title}
-        </h3>
-        <p className="text-base md:text-lg text-white/50 leading-relaxed mb-8">
-          {service.description}
-        </p>
-
         {/* Tags */}
-        <div className="flex flex-wrap gap-3">
+        <div className="flex flex-wrap gap-2.5 pt-6 border-t border-white/5">
           {service.tags.map((tag) => (
             <span
               key={tag}
@@ -173,7 +175,7 @@ function ServiceCard({
         </div>
 
         {/* Hover arrow */}
-        <div className="absolute top-10 right-10 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-x-3 group-hover:translate-x-0">
+        <div className="absolute top-8 right-8 md:top-10 md:right-10 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-x-3 group-hover:translate-x-0">
           <svg
             className="w-6 h-6 text-white/60"
             fill="none"

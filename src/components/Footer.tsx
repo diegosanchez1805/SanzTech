@@ -12,14 +12,8 @@ export default function Footer() {
 
   return (
     <footer className="relative border-t border-white/10 bg-black/40">
-      <div
-        className="max-w-7xl mx-auto py-24"
-        style={{
-          paddingLeft: "clamp(2.5rem, 7vw, 6rem)",
-          paddingRight: "clamp(2.5rem, 7vw, 6rem)",
-        }}
-      >
-        <div className="flex flex-col md:flex-row items-center justify-between gap-10">
+      <div className="container-x py-16 md:py-20">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-8 md:gap-10">
           {/* Logo */}
           <div className="flex items-center">
             <Image
@@ -32,20 +26,20 @@ export default function Footer() {
           </div>
 
           {/* Links */}
-          <div className="flex flex-wrap items-center justify-center gap-8 md:gap-10">
+          <nav aria-label="Pie de página" className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3 md:gap-10">
             {["Inicio", "Servicios", "Proyectos", "Contacto"].map((link) => (
               <a
                 key={link}
                 href={`#${link.toLowerCase()}`}
-                className="text-sm md:text-base text-white/50 hover:text-white transition-colors"
+                className="text-sm md:text-base text-white/50 hover:text-white transition-colors rounded-md"
               >
                 {link}
               </a>
             ))}
-          </div>
+          </nav>
 
           {/* Copyright */}
-          <p className="text-sm text-white/30">
+          <p className="text-sm text-white/30 text-center md:text-right">
             © {currentYear} SanzTech. Todos los derechos reservados.
           </p>
         </div>

@@ -26,25 +26,20 @@ export default function Contact() {
   return (
     <section
       id="contacto"
-      className="relative"
-      style={{
-        paddingTop: "clamp(4rem, 8vh, 6rem)",
-        paddingBottom: "clamp(6rem, 12vh, 10rem)",
-        paddingLeft: "clamp(3rem, 8vw, 8rem)",
-        paddingRight: "clamp(3rem, 8vw, 8rem)",
-      }}
+      className="relative section-y"
     >
       {/* Background accent */}
-      <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-white/[0.01] rounded-full blur-[150px]" />
+      <div className="absolute bottom-0 left-0 w-[600px] max-w-full h-[600px] bg-white/[0.01] rounded-full blur-[150px] pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto">
-        <div className="grid lg:grid-cols-2 gap-20 lg:gap-28 xl:gap-36 items-start">
+      <div className="container-x">
+        <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 xl:gap-32 items-start">
           {/* Left side — Info */}
           <div
             ref={titleRef}
             className={`reveal ${titleVisible ? "visible" : ""}`}
           >
-            <p className="text-xs md:text-sm tracking-[0.3em] uppercase text-white/40 font-mono mb-6">
+            <p className="flex items-center gap-3 text-xs md:text-sm tracking-[0.3em] uppercase text-white/40 font-mono mb-5">
+              <span className="h-px w-8 bg-white/30" aria-hidden="true" />
               Contacto
             </p>
             <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-8 leading-[1.05]">
@@ -52,16 +47,16 @@ export default function Contact() {
               <br />
               <span className="text-white/40">tu proyecto</span>
             </h2>
-            <p className="text-base md:text-lg text-white/50 leading-relaxed mb-14 max-w-lg">
+            <p className="text-base md:text-lg text-white/50 leading-relaxed text-pretty mb-12 max-w-lg">
               ¿Tienes una idea en mente? Cuéntanos sobre tu proyecto y
               encontraremos la mejor solución tecnológica para hacerlo realidad.
             </p>
 
             {/* Contact info cards */}
-            <div className="flex flex-col gap-5 max-w-md">
+            <div className="flex flex-col gap-4 max-w-md">
               <a
                 href="mailto:contacto@sanztech.com"
-                className="group flex items-center gap-5 p-5 rounded-2xl bg-white/[0.02] border border-white/5 hover:bg-white/[0.06] hover:border-white/15 transition-all duration-300"
+                className="group flex items-center gap-5 p-5 rounded-2xl bg-white/[0.02] border border-white/5 hover:bg-white/[0.06] hover:border-white/15 hover:translate-x-1 transition-all duration-300"
               >
                 <div className="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-white/10 group-hover:scale-105 transition-all duration-300 shrink-0">
                   <svg
@@ -80,7 +75,7 @@ export default function Contact() {
                 </div>
                 <div>
                   <p className="text-xs text-white/40 mb-1 font-mono uppercase tracking-wider">Email</p>
-                  <p className="text-base md:text-lg text-white/80 group-hover:text-white transition-colors font-medium">
+                  <p className="text-base md:text-lg text-white/80 group-hover:text-white transition-colors font-medium break-all sm:break-normal">
                     contacto@sanztech.com
                   </p>
                 </div>
@@ -115,11 +110,11 @@ export default function Contact() {
               </div>
 
               {/* Social links */}
-              <div className="pt-6 flex gap-4">
+              <div className="pt-4 flex gap-3">
                 {[
                   {
                     label: "GitHub",
-                    href: "#",
+                    href: "https://github.com/diegosanchez1805",
                     icon: (
                       <svg
                         className="w-6 h-6"
@@ -132,7 +127,7 @@ export default function Contact() {
                   },
                   {
                     label: "LinkedIn",
-                    href: "#",
+                    href: "https://www.linkedin.com/in/diego-sanchez-blanco/",
                     icon: (
                       <svg
                         className="w-6 h-6"
@@ -165,25 +160,32 @@ export default function Contact() {
             className={`reveal ${formVisible ? "visible" : ""}`}
             style={{ transitionDelay: "200ms" }}
           >
-            <form onSubmit={handleSubmit} className="flex flex-col gap-8 md:gap-10">
+            <form
+              onSubmit={handleSubmit}
+              className="card-sheen relative flex flex-col gap-7 md:gap-8 p-6 sm:p-8 md:p-10 rounded-3xl border border-white/10 bg-white/[0.02]"
+            >
               {/* Name */}
               <div className="flex flex-col gap-3">
                 <label
                   htmlFor="name"
-                  className="text-sm md:text-base font-medium text-white/70"
+                  className={`text-sm md:text-base font-medium transition-colors duration-300 ${
+                    focused === "name" ? "text-white" : "text-white/70"
+                  }`}
                 >
                   Nombre completo
                 </label>
                 <input
                   type="text"
                   id="name"
+                  onFocus={() => setFocused("name")}
+                  onBlur={() => setFocused(null)}
                   value={formState.name}
                   onChange={(e) =>
                     setFormState({ ...formState, name: e.target.value })
                   }
                   placeholder="Tu nombre o empresa"
                   required
-                  className="w-full bg-white/[0.03] border border-white/10 focus:border-white/40 rounded-2xl px-6 py-4.5 text-white text-base md:text-lg outline-none transition-all duration-300 placeholder:text-white/25 focus:bg-white/[0.06]"
+                  className="w-full bg-white/[0.03] border border-white/10 focus:border-white/40 rounded-2xl px-6 py-4.5 text-white text-base md:text-lg outline-none transition-all duration-300 placeholder:text-white/25 hover:border-white/20 focus:bg-white/[0.06] focus:shadow-[0_0_0_4px_rgba(255,255,255,0.04)] focus-visible:outline-none"
                 />
               </div>
 
@@ -191,20 +193,24 @@ export default function Contact() {
               <div className="flex flex-col gap-3">
                 <label
                   htmlFor="email"
-                  className="text-sm md:text-base font-medium text-white/70"
+                  className={`text-sm md:text-base font-medium transition-colors duration-300 ${
+                    focused === "email" ? "text-white" : "text-white/70"
+                  }`}
                 >
                   Correo electrónico
                 </label>
                 <input
                   type="email"
                   id="email"
+                  onFocus={() => setFocused("email")}
+                  onBlur={() => setFocused(null)}
                   value={formState.email}
                   onChange={(e) =>
                     setFormState({ ...formState, email: e.target.value })
                   }
                   placeholder="ejemplo@correo.com"
                   required
-                  className="w-full bg-white/[0.03] border border-white/10 focus:border-white/40 rounded-2xl px-6 py-4.5 text-white text-base md:text-lg outline-none transition-all duration-300 placeholder:text-white/25 focus:bg-white/[0.06]"
+                  className="w-full bg-white/[0.03] border border-white/10 focus:border-white/40 rounded-2xl px-6 py-4.5 text-white text-base md:text-lg outline-none transition-all duration-300 placeholder:text-white/25 hover:border-white/20 focus:bg-white/[0.06] focus:shadow-[0_0_0_4px_rgba(255,255,255,0.04)] focus-visible:outline-none"
                 />
               </div>
 
@@ -212,12 +218,16 @@ export default function Contact() {
               <div className="flex flex-col gap-3">
                 <label
                   htmlFor="message"
-                  className="text-sm md:text-base font-medium text-white/70"
+                  className={`text-sm md:text-base font-medium transition-colors duration-300 ${
+                    focused === "message" ? "text-white" : "text-white/70"
+                  }`}
                 >
                   Cuéntanos sobre tu proyecto
                 </label>
                 <textarea
                   id="message"
+                  onFocus={() => setFocused("message")}
+                  onBlur={() => setFocused(null)}
                   value={formState.message}
                   onChange={(e) =>
                     setFormState({ ...formState, message: e.target.value })
@@ -225,19 +235,19 @@ export default function Contact() {
                   placeholder="Describe brevemente qué necesitas desarrollar..."
                   required
                   rows={5}
-                  className="w-full bg-white/[0.03] border border-white/10 focus:border-white/40 rounded-2xl px-6 py-4.5 text-white text-base md:text-lg outline-none transition-all duration-300 placeholder:text-white/25 focus:bg-white/[0.06] resize-none"
+                  className="w-full bg-white/[0.03] border border-white/10 focus:border-white/40 rounded-2xl px-6 py-4.5 text-white text-base md:text-lg outline-none transition-all duration-300 placeholder:text-white/25 hover:border-white/20 focus:bg-white/[0.06] focus:shadow-[0_0_0_4px_rgba(255,255,255,0.04)] focus-visible:outline-none resize-none"
                 />
               </div>
 
               {/* Submit button */}
-              <div className="pt-4">
+              <div className="pt-2">
                 <button
                   type="submit"
                   disabled={submitted}
-                  className={`group w-full py-5 px-10 rounded-full font-semibold text-base md:text-lg transition-all duration-500 flex items-center justify-center gap-3 shadow-[0_0_25px_rgba(255,255,255,0.15)] ${
+                  className={`group w-full py-5 px-10 rounded-full font-semibold text-base md:text-lg transition-all duration-500 flex items-center justify-center gap-3 ${
                     submitted
                       ? "bg-emerald-500/20 text-emerald-400 border border-emerald-500/30"
-                      : "bg-white text-black hover:bg-white/90 hover:scale-[1.02] active:scale-[0.98]"
+                      : "bg-white text-black hover:bg-white/90 hover:scale-[1.02] active:scale-[0.98] shadow-[0_0_25px_rgba(255,255,255,0.15)] hover:shadow-[0_0_35px_rgba(255,255,255,0.3)]"
                   }`}
                 >
                   {submitted ? (
